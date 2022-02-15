@@ -1,0 +1,15 @@
+# Env vars
+export XDG_CONFIG_DIR=$HOME/.config
+export PATH=$HOME/.local/bin:$PATH
+
+
+/bin/sh $HOME/.local/bin/picom-toggle.sh
+
+# Screens
+#hdmi=$(xrandr | grep ' connected' | grep -i 'hdmi' | awk '{print $1}')
+
+#if [ "$hdmi" == "HDMI-1" ]; then
+#  xrandr --output eDP-1 --primary --mode 1366x768 --pos 276x10klh00 --output HDMI-1 --mode 2560x1080 --pos 0x0 &
+#else
+#  xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off &
+#fi
