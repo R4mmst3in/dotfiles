@@ -2,14 +2,31 @@
 export XDG_CONFIG_DIR=$HOME/.config
 export PATH=$HOME/.local/bin:$PATH
 
-
-/bin/sh $HOME/.local/bin/picom-toggle.sh
+# /bin/sh $HOME/.local/bin/picom-toggle.sh
 
 # Screens
-#hdmi=$(xrandr | grep ' connected' | grep -i 'hdmi' | awk '{print $1}')
+hdmi=$(xrandr | grep ' connected' | grep -i 'hdmi' | awk '{print $1}')
+dp=$(xrandr | grep ' connected' | grep -i 'dp' | awk '{print $1}')
 
-#if [ "$hdmi" == "HDMI-1" ]; then
-#  xrandr --output eDP-1 --primary --mode 1366x768 --pos 276x10klh00 --output HDMI-1 --mode 2560x1080 --pos 0x0 &
-#else
-#  xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off &
-#fi
+if [ "$hdmi" = "HDMI1" ]; then
+  xrandr --output eDP1 --primary --mode 1366x768 --pos 276x1080 --output HDMI1 --mode 1920x1080 --pos 0x0 &
+elif [ "$dp" = "DP1" ]; then
+  xrandr --output eDP1 --primary --mode 1366x768 --pos 276x1080 --output DP1 --mode 1920x1080 --right-of eDP1 &
+else
+  xrandr --output eDP1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI1 --off --output DP1 --off &
+fi
+
+# Configuracion para pantalla del portatil - Posicion izquierda
+# conf_edp1_left="xrandr --output eDP1 --mode 1366x768 --pos 0x0 --output eDP1 --mode 1366x768 --left-of DP1 &"
+
+# Configuracion para VGA externo 1920x1080 - Posicion derecha
+# conf_dp1_right="xrandr --output DP1 --mode 1920x1080 --pos 1920x0 --output DP1 --mode 1920x1080 --right-of eDP1 &"
+
+# Configuracion para pantalla del portatil - Posicion derecha
+# conf_edp1_right="xrandr --output eDP1 --mode 1366x768 --pos 0x0 --output eDP1 --mode 1366x768 --right-of DP1 &"
+
+# Configuracion para VGA externo 1920x1080 - Posicion izquierda
+# conf_dp1_left="xrandr --output DP1 --mode 1920x1080 --pos 1920x0 --output DP1 --mode 1920x1080 --left-of eDP1 &"
+
+# Configuracion para HDI-1 externo 1920x1080 - Posicion derecha
+# conf_hdm1_right="xrandr --output DP1 --mode 1920x1080 --pos 1920x0 --output HDMI1 --mode 1920x1080 --right-of eDP1 &"
